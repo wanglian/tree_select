@@ -22,7 +22,8 @@ map.resources :regions
 3 in view:
 <%= region_select "user[region_id]" %>
 or
-<%= region_select "user[region_id]", :readonly => true, :complete_must => false %>
+<%= region_select "user[region_id]", nil, :readonly => true, :complete_must => false %>
 
+TODO: tests and docs
 
 Copyright (c) 2008 Allen Wang, released under the MIT license
