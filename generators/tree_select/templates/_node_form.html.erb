@@ -1,0 +1,11 @@
+<%%# locals: name, category, complete_must %>
+<%%= text_field_tag "#{name}_#{category}_name", nil, :style => 'width:100px;' %>
+<%%= submit_to_remote "", "Save", 
+      :url => <%= controller_file_name %>_path(:category => category, :name => name, :complete_must => complete_must), 
+      :method => :post, 
+      :with => with_params_for_create_<%= model_file_name %>(name, category),
+      :condition => "$F('#{name}_#{category}_name').strip() != ''",
+      :before => "Element.show('spinner-#{name}-#{category}-add')",
+      :success => "$('#{name}_#{category}_name').value = '';Element.hide('spinner-#{name}-#{category}-add')" %>
+<%%= button_to_function "Cancel", visual_effect(:toggle_blind, "#{name}_#{category}_add") %>
+<%%= spinner_image_tag "spinner-#{name}-#{category}-add" %>

@@ -1,0 +1,28 @@
+TreeSelect
+==========
+
+TreeSelect provides a form select helper for tree-like date structure.
+
+install:
+script/plugin install git://github.com/wanglian/tree_select.git
+
+prequisites:
+The default javascript libs must be include in the view:
+<%= javascript_include_tag :defaults %>
+
+Example
+=======
+1 generator
+script/generate tree_select region Country State City
+rake db:migrate
+
+2 add to routes.rb:
+map.resources :regions
+
+3 in view:
+<%= region_select "user[region_id]" %>
+or
+<%= region_select "user[region_id]", :readonly => true, :complete_must => false %>
+
+
+Copyright (c) 2008 Allen Wang, released under the MIT license
