@@ -1,6 +1,6 @@
 module <%= controller_class_name %>Helper
-  def <%= model_file_name %>_node_select(name, category, options, complete_must)
-    select_tag("#{name}_#{category}", "<option>--- Please Select ---</option>#{options_for_select(options.collect {|c| [c.name, c.id]})}",
+  def <%= model_file_name %>_node_select(name, category, options, value, complete_must)
+    select_tag("#{name}_#{category}", "<option>--- Please Select ---</option>#{options_for_select(options.collect {|c| [c.name, c.id]}, value)}",
           {:onchange => remote_function(:url => {:controller => "<%= controller_file_name %>", :name => name, 
                                                  :category => category, :complete_must => complete_must}, 
                                         :with => "'id=' + this.value", :method => :get,

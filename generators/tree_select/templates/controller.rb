@@ -11,11 +11,11 @@ class <%= controller_class_name %>Controller < ApplicationController
           child_category = <%= model_class_name %>.child_category(params[:category])
           if child_category
             page.replace_html "#{params[:name]}-#{child_category}", 
-                              <%= model_file_name %>_node_select(params[:name], child_category, @node.children, complete_must)
+                              <%= model_file_name %>_node_select(params[:name], child_category, @node.children, nil, complete_must)
             page.show "#{params[:name]}_#{child_category}_add_link"
             <%= model_class_name %>::CATEGORIES.reverse.each do |category|
               break if category == child_category
-              page.replace_html "#{params[:name]}-#{category}", <%= model_file_name %>_node_select(params[:name], category, [], complete_must)
+              page.replace_html "#{params[:name]}-#{category}", <%= model_file_name %>_node_select(params[:name], category, [], nil, complete_must)
               page.hide "#{params[:name]}_#{category}_add_link"
             end
           end
@@ -33,7 +33,7 @@ class <%= controller_class_name %>Controller < ApplicationController
           <%= model_class_name %>::CATEGORIES.reverse.each do |category|
             break if category == params[:category]
           
-            page.replace_html "#{params[:name]}-#{category}", <%= model_file_name %>_node_select(params[:name], category, [], complete_must)
+            page.replace_html "#{params[:name]}-#{category}", <%= model_file_name %>_node_select(params[:name], category, [], nil, complete_must)
             page.hide "#{params[:name]}_#{category}_add_link"
           end
           
@@ -60,19 +60,19 @@ class <%= controller_class_name %>Controller < ApplicationController
             @parent.children << node if node.valid?
             
             page.replace_html "#{params[:name]}-#{params[:category]}", 
-                              <%= model_file_name %>_node_select(params[:name], params[:category], @parent.children, complete_must)
+                              <%= model_file_name %>_node_select(params[:name], params[:category], @parent.children, nil, complete_must)
             
             <%= model_class_name %>::CATEGORIES.reverse.each do |category|
               break if category == params[:category]
               
-              page.replace_html "#{params[:name]}-#{category}", <%= model_file_name %>_node_select(params[:name], category, [], complete_must)
+              page.replace_html "#{params[:name]}-#{category}", <%= model_file_name %>_node_select(params[:name], category, [], nil, complete_must)
               page.hide "#{params[:name]}_#{category}_add_link"
             end
           else
             <%= model_class_name %>.create :name => params[:node], :category => params[:category]
             
             page.replace_html "#{params[:name]}-#{params[:category]}", 
-                              <%= model_file_name %>_node_select(params[:name], params[:category], <%= model_class_name %>.roots, complete_must)
+                              <%= model_file_name %>_node_select(params[:name], params[:category], <%= model_class_name %>.roots, nil, complete_must)
           end
           
           <%= model_class_name %>::CATEGORIES.each do |category|

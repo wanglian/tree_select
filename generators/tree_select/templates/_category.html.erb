@@ -1,14 +1,14 @@
-<%%# locals: name, category, options, readonly, complete_must%>
+<%%# locals: name, category, options, value, readonly, complete_must%>
 <div style="margin-bottom:5px;">
   <span><%%= category %></span><br/>
-  <span id="<%%= name %>-<%%= category %>"><%%= <%= model_file_name %>_node_select(name, category, options, complete_must) %></span>
+  <span id="<%%= name %>-<%%= category %>"><%%= <%= model_file_name %>_node_select(name, category, options, value, complete_must) %></span>
   <span id="<%%= name %>_<%%= category %>_add_link" style="display:none;"><%%= link_to_function "Add", visual_effect(:toggle_blind, "#{name}_#{category}_add") unless readonly %></span>
   <%%= <%= model_file_name %>_spinner_image_tag "spinner-#{name}-#{category}"%>
   
   <div id="<%%= name %>_<%%= category %>_add" style="display:none;">
-    <%%= render :partial => 'node_form', :locals => {:name => name, :category => category, :complete_must => complete_must} %>
+    <%%= render :partial => '<%= controller_file_name %>/node_form', :locals => {:name => name, :category => category, :complete_must => complete_must} %>
   </div>
-  <%% if <%= model_class_name %>.root?(category) -%>
+  <%% if <%= model_class_name %>.root?(category) || !options.empty? -%>
     <script>Element.show('<%%= name %>_<%%= category %>_add_link');</script>
   <%% end -%>
 </div>

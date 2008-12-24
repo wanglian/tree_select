@@ -3,8 +3,8 @@
 <%% readonly ||= false %>
 <%% complete_must ||= false %>
 <%% <%= model_class_name %>::CATEGORIES.each do |category| -%>
-  <%%= render :partial => 'category', :object => category, 
-             :locals => {:name => name, :options => node.subs(category), :readonly => readonly, :complete_must => complete_must}%>
+  <%%= render :partial => '<%= controller_file_name %>/category', :object => category, 
+             :locals => {:name => name, :options => node.siblings(category), :value => node.value(category), :readonly => readonly, :complete_must => complete_must}%>
   <%%# break if category == value.category %>
 <%% end -%>
 <%%= hidden_field_tag name, value %>
