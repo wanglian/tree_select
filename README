@@ -7,8 +7,9 @@ install:
 script/plugin install git://github.com/wanglian/tree_select.git
 
 prequisites:
-The default javascript libs must be include in the view:
-<%= javascript_include_tag :defaults %>
+1 acts_as_tree plugin
+2 The default javascript libs must be include in the view:
+  <%= javascript_include_tag :defaults %>
 
 Example
 =======

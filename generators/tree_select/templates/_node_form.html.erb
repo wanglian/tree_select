@@ -8,4 +8,4 @@
       :before => "Element.show('spinner-#{name}-#{category}-add')",
       :success => "$('#{name}_#{category}_name').value = '';Element.hide('spinner-#{name}-#{category}-add')" %>
 <%%= button_to_function "Cancel", visual_effect(:toggle_blind, "#{name}_#{category}_add") %>
-<%%= spinner_image_tag "spinner-#{name}-#{category}-add" %>
+<%%= <%= model_file_name %>spinner_image_tag "spinner-#{name}-#{category}-add" %>
