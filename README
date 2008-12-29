@@ -25,6 +25,9 @@ map.resources :regions
 or
 <%= region_select "user[region_id]", nil, :readonly => true, :complete_must => false %>
 
+demo: http://tree-select.heroku.com/
+
+
 TODO: tests and docs
 
 Copyright (c) 2008 Allen Wang, released under the MIT license
